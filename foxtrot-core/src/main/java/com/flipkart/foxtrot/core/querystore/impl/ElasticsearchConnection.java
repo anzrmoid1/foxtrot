@@ -45,10 +45,11 @@ public class ElasticsearchConnection implements Managed {
     public void start() throws Exception {
         logger.info("Starting ElasticSearch Client");
         Settings settings = Settings.builder()
+                .build();
+        settings = Settings.builder()
                 .put("cluster.name", config.getCluster())
                 .put("client.transport.ignore_cluster_name", true)
                 .build();
-
         TransportClient esClient = new PreBuiltTransportClient(settings);
         Integer port;
         if(config.getPort() == null) {
