@@ -60,10 +60,13 @@ cd $PACKAGE
 mvn -U $MVN_OPTIONS -Denv="$ENV" package
 #/usr/share/fk-ops-maven2/bin/mvn -U $MVN_OPTIONS -Denv="$ENV" package
 cd ..
-cp $PACKAGE/target/$PACKAGE-3.0.jar deb/var/lib/$PACKAGE/dropwizard/
 
 echo "Present Working Directory :"
 pwd
+
+cp $PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dropwizard/
+
+
 
 
 ##### Retrieve package specific variables #####
@@ -73,8 +76,8 @@ pwd
 #sed -i -e "s/_REPO_NAME_/$PACKAGE/g" .build.json
 
 ##### Substitutions and moves #####
-sed -i -e "s/_UID_/$PAC_UID/g; s/_PACKAGE_/$PACKAGE/g; s/_ENV_/$ENV/g" deb/DEBIAN/* build-$PACKAGE/init-script
-cp build-$PACKAGE/init.d/init-script deb/etc/init.d/$PACKAGE
+sed -i -e "s/_UID_/$PAC_UID/g; s/_PACKAGE_/$PACKAGE/g; s/_ENV_/$ENV/g" deb/DEBIAN/* build-$PACKAGE/etc/init.d/init-script
+cp build-$PACKAGE/etc/init.d/init-script deb/etc/init.d/$PACKAGE
 
 
 ##### Generate /etc/default/packagename ######
