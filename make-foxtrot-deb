@@ -63,8 +63,9 @@ cd ..
 
 echo "Present Working Directory :"
 pwd
-
-cp $PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dropwizard/
+echo "Contents"
+ls
+cp ./$PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dropwizard/
 
 
 
@@ -77,13 +78,14 @@ cp $PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dropw
 
 ##### Substitutions and moves #####
 sed -i -e "s/_UID_/$PAC_UID/g; s/_PACKAGE_/$PACKAGE/g; s/_ENV_/$ENV/g" deb/DEBIAN/* build-$PACKAGE/etc/init.d/init-script
-cp build-$PACKAGE/etc/init.d/init-script deb/etc/init.d/$PACKAGE
+cp ./build-$PACKAGE/etc/init.d/init-script deb/etc/init.d/$PACKAGE
 
 
 ##### Generate /etc/default/packagename ######
 ### see build-$PACKAGE/etc/packagename.defaults for more JAVA_OPTS ###
 
 # Create /etc/default/_PACKAGE_
+mkdir -p deb/etc/default/
 echo "# $PACKAGE
 USER=$PACKAGE
 GROUP=fk-cms
