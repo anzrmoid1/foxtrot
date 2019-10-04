@@ -64,8 +64,8 @@ cd ..
 echo "Present Working Directory :"
 pwd
 echo "Contents"
-ls
-cp ./$PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dropwizard/
+ls -R
+cp $PACKAGE/target/$PACKAGE-server-6.3.1-2.jar deb/var/lib/$PACKAGE/dropwizard/
 
 
 
@@ -78,7 +78,7 @@ cp ./$PACKAGE/target/$PACKAGE-server-6.3.1-2-shaded.jar deb/var/lib/$PACKAGE/dro
 
 ##### Substitutions and moves #####
 sed -i -e "s/_UID_/$PAC_UID/g; s/_PACKAGE_/$PACKAGE/g; s/_ENV_/$ENV/g" deb/DEBIAN/* build-$PACKAGE/etc/init.d/init-script
-cp ./build-$PACKAGE/etc/init.d/init-script deb/etc/init.d/$PACKAGE
+cp build-$PACKAGE/etc/init.d/init-script deb/etc/init.d/$PACKAGE
 
 
 ##### Generate /etc/default/packagename ######
