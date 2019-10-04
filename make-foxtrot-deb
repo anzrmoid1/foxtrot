@@ -64,7 +64,7 @@ mvn -U $MVN_OPTIONS -Denv="$ENV" package
 echo "Present Working Directory :"
 pwd
 
-cp $PACKAGE-server/target/$PACKAGE-server-6.3.1-2.jar deb/var/lib/$PACKAGE/dropwizard/
+cp $PACKAGE-server/target/$PACKAGE-server-6.3.1-2.jar deb/var/lib/$PACKAGE/dropwizard/$PACKAGE.jar
 
 
 

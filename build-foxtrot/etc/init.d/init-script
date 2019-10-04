@@ -1,7 +1,7 @@
 #!/bin/bash -e
 export PACKAGE=foxtrot
 export USER=$PACKAGE
-export MODULENAME=${PACKAGE}
+export MODULENAME=$PACKAGE
 STATUSFILE=appstatus.html
 
 JMX_PORT=3335
@@ -12,7 +12,7 @@ if [ -f "$DEFAULT" ]; then
 fi
 
 export PACKAGE_PID="/var/run/$PACKAGE/$PACKAGE.pid"
-export DROPWIZARD_JAR="/var/lib/$PACKAGE/dropwizard/$MODULENAME-3.0.jar";
+export DROPWIZARD_JAR="/var/lib/$PACKAGE/dropwizard/$MODULENAME.jar";
 export DROPWIZARD_CONFIG="/etc/$PACKAGE/config/$MODULENAME-config.yml";
 GC_OPTS="-Xms16G -Xmx16G -Xmn14G -XX:SurvivorRatio=2 -XX:+PrintGCApplicationStoppedTime -verbose:gc -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -Xloggc:/var/log/flipkart/$PACKAGE/gc.log -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+DisableExplicitGC -XX:+CMSScavengeBeforeRemark -XX:+UnlockCommercialFeatures -XX:+FlightRecorder";
 REMOTE_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=n";
@@ -29,7 +29,7 @@ function start()
         sudo -u $USER nohup java -jar -Denv="$ENV" -server $REMOTE_OPTS $GC_OPTS $JMX_OPTS $DROPWIZARD_JAR server $DROPWIZARD_CONFIG > /tmp/out.log 2>&1 &
         echo $! > $PACKAGE_PID
         echo "{ uptime: 100, requests: 0, capacity: 50 }" > /var/lib/$PACKAGE/dropwizard/$STATUSFILE
-        sudo /etc/$PACKAGE/plugin/fk-$PACKAGE-cosmos-plugin start
+        #sudo /etc/$PACKAGE/plugin/fk-$PACKAGE-cosmos-plugin start
     else
         echo "$PACKAGE already running!!!"
     fi
@@ -46,7 +46,7 @@ function stop()
     PID=$(cat $PACKAGE_PID)
     kill $PID
     rm $PACKAGE_PID
-    sudo /etc/$PACKAGE/plugin/fk-$PACKAGE-cosmos-plugin stop
+    #sudo /etc/$PACKAGE/plugin/fk-$PACKAGE-cosmos-plugin stop
 }
 
 function health_check()
