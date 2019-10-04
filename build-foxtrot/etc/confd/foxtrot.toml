@@ -1,7 +1,7 @@
 [template]
 prefix="/_BUCKET_"
-src = "vms-service.tmpl"
-dest = "/etc/fk-vms-service/config/vms-service-config.yml"
+src = "foxtrot.tmpl"
+dest = "/etc/foxtrot/config/foxtrot-config.yml"
 keys = ["/database.driverClass",
 "/database.user",
 "/database.password",
