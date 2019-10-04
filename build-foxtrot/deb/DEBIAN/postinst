@@ -43,7 +43,7 @@ fi
 
 COSMOS_FILE="/etc/cosmos-jmx/foxtrot.json"
 
-BUCKET=foxtrot-service
+BUCKET=foxtrot
 
 
 sed -i 's/_HOSTNAME_/'"`hostname -f`"'/' $COSMOS_FILE

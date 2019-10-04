@@ -1,182 +1,49 @@
-########## APPLICATION SPECIFIC CONFIGURATION ##########
 ---
-database:
-  driverClass: {{getv "/database.driverClass"}}
-  user: {{getv "/database.user"}}
-  password: {{getv "/database.password"}}
-  url: {{getv "/database.url"}}
-  maxWaitForConnection: {{getv "/database.maxWaitForConnection"}}
-  minSize: {{getv "/database.minSize"}}
-  maxSize: {{getv "/database.maxSize"}}
-
-########## DROPWIZARD SPECIFIC CONFIGURATION ##########
-
 server:
-  minThreads: {{getv "/server.minThreads"}}
-  maxThreads: {{getv "/server.maxThreads"}}
-  maxQueuedRequests: {{getv "/server.maxQueuedRequests"}}
-  idleThreadTimeout: {{getv "/server.idleThreadTimeout"}}
-  shutdownGracePeriod: {{getv "/server.shutdownGracePeriod"}}
-  rootPath: {{getv "/server.rootPath"}}
-  adminContextPath: {{getv "/server.adminContextPath"}}
-  applicationContextPath: {{getv "/server.applicationContextPath"}}
-  type: {{getv "/server.type"}}
-  adminMinThreads: {{getv "/server.adminMinThreads"}}
-  adminMaxThreads: {{getv "/server.adminMaxThreads"}}
   applicationConnectors:
   - type: {{getv "/server.applicationConnectors.0.type"}}
     port: {{getv "/server.applicationConnectors.0.port"}}
-    headerCacheSize: "{{getv "/server.applicationConnectors.0.headerCacheSize"}}"
-    outputBufferSize: {{getv "/server.applicationConnectors.0.outputBufferSize"}}
-    maxRequestHeaderSize: {{getv "/server.applicationConnectors.0.maxRequestHeaderSize"}}
-    maxResponseHeaderSize: {{getv "/server.applicationConnectors.0.maxResponseHeaderSize"}}
-    inputBufferSize: {{getv "/server.applicationConnectors.0.inputBufferSize"}}
-    idleTimeout: "{{getv "/server.applicationConnectors.0.idleTimeout"}}"
-    minBufferPoolSize: "{{getv "/server.applicationConnectors.0.minBufferPoolSize"}}"
-    bufferPoolIncrement: {{getv "/server.applicationConnectors.0.bufferPoolIncrement"}}
-    maxBufferPoolSize: {{getv "/server.applicationConnectors.0.maxBufferPoolSize"}}
-    acceptorThreads: {{getv "/server.applicationConnectors.0.acceptorThreads"}}
-    selectorThreads: {{getv "/server.applicationConnectors.0.selectorThreads"}}
-    acceptQueueSize: {{getv "/server.applicationConnectors.0.acceptQueueSize"}}
-    reuseAddress: {{getv "/server.applicationConnectors.0.reuseAddress"}}
-    soLingerTime: {{getv "/server.applicationConnectors.0.soLingerTime"}}
-    useServerHeader: {{getv "/server.applicationConnectors.0.useServerHeader"}}
-    useDateHeader: {{getv "/server.applicationConnectors.0.useDateHeader"}}
-    useForwardedHeaders: {{getv "/server.applicationConnectors.0.useForwardedHeaders"}}
   adminConnectors:
   - type: {{getv "/server.adminConnectors.0.type"}}
     port: {{getv "/server.adminConnectors.0.port"}}
-  requestLog:
-    appenders:
-    - type: {{getv "/server.requestLog.appenders.0.type"}}
-      currentLogFilename: {{getv "/server.requestLog.appenders.0.currentLogFilename"}}
-      timeZone: {{getv "/server.requestLog.appenders.0.timeZone"}}
-      logFormat: "{{getv "/server.requestLog.appenders.0.logFormat"}}"
-      archive: {{getv "/server.requestLog.appenders.0.archive"}}
-      archivedLogFilenamePattern: {{getv "/server.requestLog.appenders.0.archivedLogFilenamePattern"}}
-      archivedFileCount: {{getv "/server.requestLog.appenders.0.archivedFileCount"}}
+elasticsearch:
+  hosts: {{getv "/elasticsearch.hosts"}}
+  cluster: {{getv "/elasticsearch.cluster"}}
+  tableNamePrefix: {{getv "/elasticsearch.tableNamePrefix"}}
+  getQueryTimeout: {{getv "/elasticsearch.getQueryTimeout"}}
+hbase:
+  secure: {{getv "/hbase.secure"}}
+  tableName: {{getv "/hbase.tableName"}}
+  hbaseZookeeperQuorum: {{getv "/hbase.hbaseZookeeperQuorum"}}
+  hbaseZookeeperClientPort: {{getv "/hbase.hbaseZookeeperClientPort"}}
+  seggregatedTablePrefix: {{getv "/hbase.seggregatedTablePrefix"}}
+cluster:
+  name: {{getv "/cluster.name"}}
+  discovery:
+    type: {{getv "/cluster.discovery.type"}}
+    disableMulticast: {{getv "/cluster.discovery.disableMulticast"}}
+    members: {{getv "/cluster.discovery.members"}}
+cacheConfig:
+  maxIdleSeconds: {{getv "/cacheConfig.maxIdleSeconds"}}
+  timeToLiveSeconds: {{getv "/cacheConfig.timeToLiveSeconds"}}
 logging:
   level: {{getv "/logging.level"}}
-  loggers:
-    io.dropwizard: {{getv "/logging.loggers.io.dropwizard"}}
-    org.eclipse.jetty: {{getv "/logging.loggers.org.eclipse.jetty"}}
-    com.flipkart.vms: {{getv "/logging.loggers.com.flipkart.vms"}}
-    org.skife.jdbi.v2: {{getv "/logging.loggers.org.skife.jdbi.v2"}}
-  appenders:
-  - type: {{getv "/logging.appenders.0.type"}}
-    currentLogFilename: {{getv "/logging.appenders.0.currentLogFilename"}}
-    timeZone: {{getv "/logging.appenders.0.timeZone"}}
-    logFormat: "{{getv "/logging.appenders.0.logFormat"}}"
-    archive: {{getv "/logging.appenders.0.archive"}}
-    archivedLogFilenamePattern: {{getv "/logging.appenders.0.archivedLogFilenamePattern"}}
-    archivedFileCount: {{getv "/logging.appenders.0.archivedFileCount"}}
-swaggerBundleConfiguration:
-  resourcePackage: {{getv "/swaggerBundleConfiguration.resourcePackage"}}
-redisConfig:
-  redisMasterName: {{getv "/redisConfig.redisMasterName"}}
-  timeout: {{getv "/redisConfig.timeout"}}
-  sentinelHosts: {{getv "/redisConfig.sentinelHosts"}}
-  poolConfig:
-      maxTotal: {{getv "/redisConfig.poolConfig.maxTotal"}}
-      maxIdle: {{getv "/redisConfig.poolConfig.maxIdle"}}
-      minIdle: {{getv "/redisConfig.poolConfig.minIdle"}}
-      maxWaitMillis: {{getv "/redisConfig.poolConfig.maxWaitMillis"}}
-      testOnBorrow: {{getv "/redisConfig.poolConfig.testOnBorrow"}}
-noFrillsRedisConfig:
-  redisMasterName: {{getv "/noFrillsRedisConfig.redisMasterName"}}
-  timeout: {{getv "/noFrillsRedisConfig.timeout"}}
-  sentinelHosts: {{getv "/noFrillsRedisConfig.sentinelHosts"}}
-  poolConfig:
-      maxTotal: {{getv "/noFrillsRedisConfig.poolConfig.maxTotal"}}
-      maxIdle: {{getv "/noFrillsRedisConfig.poolConfig.maxIdle"}}
-      minIdle: {{getv "/noFrillsRedisConfig.poolConfig.minIdle"}}
-      maxWaitMillis: {{getv "/noFrillsRedisConfig.poolConfig.maxWaitMillis"}}
-      testOnBorrow: {{getv "/noFrillsRedisConfig.poolConfig.testOnBorrow"}}
-rulesRedisNotificationsConfig:
-  redisMasterName: {{getv "/rulesRedisNotificationsConfig.redisMasterName"}}
-  redisPassword: {{getv "/rulesRedisNotificationsConfig.redisPassword"}}
-  timeout: {{getv "/rulesRedisNotificationsConfig.timeout"}}
-  sentinelHosts: {{getv "/rulesRedisNotificationsConfig.sentinelHosts"}}
-  poolConfig:
-      maxTotal: {{getv "/rulesRedisNotificationsConfig.poolConfig.maxTotal"}}
-      maxIdle: {{getv "/rulesRedisNotificationsConfig.poolConfig.maxIdle"}}
-      minIdle: {{getv "/rulesRedisNotificationsConfig.poolConfig.minIdle"}}
-      maxWaitMillis: {{getv "/rulesRedisNotificationsConfig.poolConfig.maxWaitMillis"}}
-      testOnBorrow: {{getv "/rulesRedisNotificationsConfig.poolConfig.testOnBorrow"}}
-categoryServiceConfig:
-  hostname: {{getv "/categoryServiceConfig.hostname"}}
-  port: {{getv "/categoryServiceConfig.port"}}
-flywayConfig:
-    locations : {{getv "/flywayConfig.locations"}}
-    sqlMigrationPrefix: {{getv "/flywayConfig.sqlMigrationPrefix"}}
-    baselineOnMigrate: {{getv "/flywayConfig.baselineOnMigrate"}}
-spcmsServiceConfig:
-    hostname: {{getv "/spcmsServiceConfig.hostname"}}
-    port: {{getv "/spcmsServiceConfig.port"}}
-varadhiConfig:
-    appId: {{getv "/varadhiConfig.appId"}}
-    exchangeName: {{getv "/varadhiConfig.exchangeName"}}
-    exchangeType: {{getv "/varadhiConfig.exchangeType"}}
-    userName : {{getv "/varadhiConfig.userName"}}
-jerseyClientConfig:
-    timeout: {{getv "/jerseyClientConfig.timeout"}}
-    connectionTimeout: {{getv "/jerseyClientConfig.connectionTimeout"}}
-    timeToLive: {{getv "/jerseyClientConfig.timeToLive"}}
-    cookiesEnabled: {{getv "/jerseyClientConfig.cookiesEnabled"}}
-    maxConnections: {{getv "/jerseyClientConfig.maxConnections"}}
-    maxConnectionsPerRoute: {{getv "/jerseyClientConfig.maxConnectionsPerRoute"}}
-    minThreads: {{getv "/jerseyClientConfig.minThreads"}}
-    maxThreads: {{getv "/jerseyClientConfig.maxThreads"}}
-    workQueueSize: {{getv "/jerseyClientConfig.workQueueSize"}}
-    gzipEnabled: {{getv "/jerseyClientConfig.gzipEnabled"}}
-    gzipEnabledForRequests: {{getv "/jerseyClientConfig.gzipEnabledForRequests"}}
-    chunkedEncodingEnabled: {{getv "/jerseyClientConfig.chunkedEncodingEnabled"}}
-hyperionAuditConfig:
-    environment: {{getv "/hyperionAuditConfig.environment"}}
-    appName: {{getv "/hyperionAuditConfig.appName"}}
-    hyperionHost: {{getv "/hyperionAuditConfig.hyperionHost"}}
-    hyperionPort: {{getv "/hyperionAuditConfig.hyperionPort"}}
-fdpConfig:
-    pushEventsSwitch: {{getv "/fdpConfig.pushEventsSwitch"}}
-    verticalEventSchemaVersion: {{getv "/fdpConfig.verticalEventSchemaVersion"}}
-    attributeVerticalSchemaVersion: {{getv "/fdpConfig.attributeVerticalSchemaVersion"}}
-    verticalEntitySchemaVersion: {{getv "/fdpConfig.verticalEntitySchemaVersion"}}
-    attributeVerticalCreateUpdateSchemaVersion: {{getv "/fdpConfig.attributeVerticalCreateUpdateSchemaVersion"}}
-    verticalCreateUpdateSchemaVersion: {{getv "/fdpConfig.verticalCreateUpdateSchemaVersion"}}
-orientdbConfig:
-    user: {{getv "/orientdbConfig.user"}}
-    password: {{getv "/orientdbConfig.password"}}
-    connectionMode: {{getv "/orientdbConfig.connectionMode"}}
-    host: {{getv "/orientdbConfig.host"}}
-    databaseName: {{getv "/orientdbConfig.databaseName"}}
-    minPoolSize: {{getv "/orientdbConfig.minPoolSize"}}
-    maxPoolSize: {{getv "/orientdbConfig.maxPoolSize"}}
-    databaseUser: {{getv "/orientdbConfig.databaseUser"}}
-    databasePassword: {{getv "/orientdbConfig.databasePassword"}}
-metadataConfig:
-    metadataTypePath: {{getv "/metadataConfig.metadataTypePath"}}
-    processorDefinitionPath: {{getv "/metadataConfig.processorDefinitionPath"}}
-migrationConfig:
-    metadataTypes: {{getv "/migrationConfig.metadataTypes"}}
-versionState:
-    state: {{getv "/versionState.state"}}
-localisationServiceConfig:
-    host: {{getv "/localisationServiceConfig.host"}}
-    port: {{getv "/localisationServiceConfig.port"}}
-    timeout: {{getv "/localisationServiceConfig.timeout"}}
-vmsServiceConfig:
-    host: {{getv "/vmsServiceConfig.host"}}
-    port: {{getv "/vmsServiceConfig.port"}}
-    queueName: {{getv "/vmsServiceConfig.queueName"}}
-rosettaServiceConfig:
-  host: {{getv "/rosettaServiceConfig.host"}}
-  port: {{getv "/rosettaServiceConfig.port"}}
-  prefix: {{getv "/rosettaServiceConfig.prefix"}}
-  connectionTimeout: {{getv "/rosettaServiceConfig.connectionTimeout"}}
-  socketTimeout: {{getv "/rosettaServiceConfig.socketTimeout"}}
-  charset: {{getv "/rosettaServiceConfig.charset"}}
-  maxConnections: {{getv "/rosettaServiceConfig.maxConnections"}}
-  maxPerRoute: {{getv "/rosettaServiceConfig.maxPerRoute"}}
-attributePropertiesConfig:
-  changeNotAllowedProperties: {{getv "/attributePropertiesConfig.changeNotAllowedProperties"}}
-globalAttributesToSkip: {{getv "/globalAttributesToSkip"}}
+cardinality:
+  enabled: {{getv "/cardinality.enabled"}}
+  batchSize: {{getv "/cardinality.batchSize"}}
+  active: {{getv "/cardinality.active"}}
+  interval: {{getv "/cardinality.interval"}}
+  initialDelay: {{getv "/cardinality.initialDelay"}}
+  maxCardinality: {{getv "/cardinality.maxCardinality"}}
+esIndexOptimizationConfig:
+  active: {{getv "/esIndexOptimizationConfig.active"}}
+  interval: {{getv "/esIndexOptimizationConfig.interval"}}
+  initialDelay: {{getv "/esIndexOptimizationConfig.initialDelay"}}
+consoleHistoryConfig:
+  active: {{getv "/consoleHistoryConfig.active"}}
+  interval: {{getv "/consoleHistoryConfig.interval"}}
+  initialDelay: {{getv "/consoleHistoryConfig.initialDelay"}}
+deletionconfig:
+  active: {{getv "/deletionconfig.active"}}
+  interval: {{getv "/deletionconfig.interval"}}
+  initialdelay: {{getv "/deletionconfig.initialdelay"}}
