@@ -1,5 +1,5 @@
 [template]
-prefix="/_VMS_BUCKET_"
+prefix="/_BUCKET_"
 src = "vms-service.tmpl"
 dest = "/etc/fk-vms-service/config/vms-service-config.yml"
 keys = ["/database.driverClass",
