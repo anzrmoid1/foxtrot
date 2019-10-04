@@ -4,5 +4,5 @@ Architecture: all
 Section: flipkart/foxtrot
 Priority: standard
 Maintainer: CMS Team <ixp-dev@flipkart.com>
-Depends: oracle-j2sdk1.8,fk-config-service-confd,cosmos-jmx,cosmos-collectd
+Depends: fk-config-service-confd,cosmos-jmx,cosmos-collectd
 Description: Catalog Platform
