@@ -48,7 +48,7 @@ logging:
       currentLogFilename: /var/log/flipkart/foxtrot/foxtrot.log
       threshold: ALL
       archive: true
-      archivedLogFilenamePattern: /var/log/flipkart/foxtrot/foxtrot-%d{yyyy-MM-dd}.log.%i.gz
+      archivedLogFilenamePattern: /var/log/flipkart/foxtrot/foxtrot.log.%i.gz
       timeZone: IST
       maxFileSize: 10KB
       archivedFileCount: 3
